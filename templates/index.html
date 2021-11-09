@@ -10,14 +10,14 @@ $(document).ready(function() {
 
 	var socket = io.connect('http://127.0.0.1:5000');
 
-	username = prompt('Hey, what your name dear?');
+    var username = "{{name}}";
 
 	socket.on('connect', function() {
 		socket.send(username + ' has connected!');
 	});
 
 	socket.on('message', function(msg) {
-		$("#messages").append('<li>'+msg+'</li>');
+		$("#messages").append('<li>' + msg + '</li>');
 		console.log('Received message');
 	});
 
@@ -29,6 +29,7 @@ $(document).ready(function() {
 });
 </script>
 <h1>Realtime Chat App in Flask</h1>
+<h2>Welcome, {{name}}</h2>
 <ul id="messages"></ul>
 <input type="text" id="myMessage" placeholder="Message">
 <button id="sendbutton">Send</button>
